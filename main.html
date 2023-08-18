@@ -1,11 +1,108 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게임화면</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Button Click</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #buttonContainer {
+      position: relative;
+    }
+
+    #imageButton {
+      width: 100px;
+      height: 100px;
+      background: 0;
+      background-image: url('chicken.png');
+      background-size: cover;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .btn-16 {
+      border: none;
+      position: relative;
+    }
+    .btn-16:active {
+      top: 2px;
+    }
+
+    .coin-text {
+      opacity: 0;
+      font-size: 16px;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: fadeInAndOut 2s ease-out forwards;
+      visibility: hidden; /* 텍스트 숨기기 */
+    }
+
+    @keyframes fadeInAndOut {
+      0%{
+        opacity: 1;
+        top: 50%;
+      }
+      50% {
+        opacity: 0;
+        top: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+  <div id="buttonContainer">
+    <div class="coin-text">+1</div>
+    <button id="imageButton" class="btn-16"></button>
+  </div>
+  
+  <script>
+    const imageButton = document.getElementById('imageButton');
+    const coinText = document.querySelector('.coin-text');
+    let clickCount = 0;
+    let originalImage = 'chicken.png';
+    let newImage = 'chicken2.png';
+    let canClick = true;
+
+    function resetImage() {
+      imageButton.style.backgroundImage = `url(${originalImage})`;
+      canClick = true; // 클릭 가능 상태로 설정 (원래 이미지)
+    }
+
+    imageButton.addEventListener('click', () => {
+      if (canClick) {
+        clickCount++;
+        console.log(`누적 클릭 횟수: ${clickCount}`);
+        coinText.style.animation = 'none'; // 애니메이션 제거
+        coinText.style.visibility = 'visible'; // 텍스트 보이기
+        setTimeout(() => {
+          coinText.style.animation = 'fadeInAndOut 2s ease-out forwards'; // 애니메이션 다시 적용
+        }, 0);
+        
+        if (clickCount % 3 === 0) { // 3의 배수일 경우
+          imageButton.style.backgroundImage = `url(${newImage})`;
+          canClick = false; // 클릭 불가능 상태 (새 이미지)
+
+          setTimeout(() => {
+            resetImage();
+            imageButton.style.position = 'relative'; // 클릭 가능 상태일 때 원래 위치로 복구
+          }, 3000);
+          
+          coinText.style.animation = 'none'; // 애니메이션 제거
+          imageButton.style.position = 'static'; // 클릭 불가능 상태일 때 위치 고정
+        }
+      }
+    });
+  </script>
 </body>
 </html>
