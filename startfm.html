@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Button Click</title>
+  <style>
+    #imageButton {
+      width: 100px;
+      height: 100px;
+      background-image: url('tree.png');
+      background-size: cover;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button id="imageButton"></button>
+  
+  <script>
+    const imageButton = document.getElementById('imageButton');
+    let clickCount = 0;
+    let originalImage = 'tree.png';
+    let newImage = 'sakana.png';
+    let canClick = true;
+
+    function resetImage() {
+      imageButton.style.backgroundImage = `url(${originalImage})`;
+      canClick = true; // 클릭 가능 상태로 설정 (원래 이미지)
+    }
+
+    imageButton.addEventListener('click', () => {
+      if (canClick) {
+        clickCount++;
+        console.log(`누적 클릭 횟수: ${clickCount}`);
+        
+        if (clickCount % 3 === 0) { // 3의 배수일 경우
+          imageButton.style.backgroundImage = `url(${newImage})`;
+          canClick = false; // 클릭 불가능 상태 (새 이미지)
+
+          setTimeout(() => {
+            resetImage();
+          }, 3000);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
