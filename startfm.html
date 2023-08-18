@@ -12,11 +12,39 @@
       background-size: cover;
       border: none;
       cursor: pointer;
+      position: relative;
+    }
+    
+    .btn-16 {
+      border: none;
+      color: #000;
+      position: relative; /* 추가 */
+    }
+    .btn-16:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      direction: rtl;
+      z-index: -1;
+    }
+    .btn-16:hover {
+      color: #000;
+    }
+    .btn-16:hover:after {
+      left: auto;
+      right: 0;
+      width: 100%;
+    }
+    .btn-16:active {
+      top: 2px;
     }
   </style>
 </head>
 <body>
-  <button id="imageButton"></button>
+  <button id="imageButton" class="btn-16"></button>
   
   <script>
     const imageButton = document.getElementById('imageButton');
@@ -41,7 +69,10 @@
 
           setTimeout(() => {
             resetImage();
+            imageButton.style.position = 'relative'; // 클릭 가능 상태일 때 원래 위치로 복구
           }, 3000);
+          
+          imageButton.style.position = 'static'; // 클릭 불가능 상태일 때 위치 고정
         }
       }
     });
