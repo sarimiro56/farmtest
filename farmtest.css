@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap");
+body {
+  background: url("./image_main/main_background.jpg");
+}
+/* box를 mainbox의 정가운데에 위치시켜볼 예정. 필요 없으면 제거. */
+.mainbox {
+  background: url("./image_main/background_white.png");
+  width: 1200px;
+  height: 950px;
+}
+#box {
+  width: 900px;
+  height: 900px;
+  background: url("./image_main/grass.jpg");
+  position: relative;
+}
+#box .animalBtn {
+  display: none;
+}
+#box .animalBtn.visible {
+  /* display: block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#box .lockImg {
+  width: 20%;
+  height: 20%;
+}
+#box .lockImg.invisible {
+  display: none;
+}
+#backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  pointer-events: none;
+  display: none;
+}
+
+header {
+  background: url("/image_main/header_background.jpg");
+  width: 100%;
+  height: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* 제목이 정해졌을 때 변경이 필요한 곳. start 화면 포함. */
+header #main_title {
+  font-family: "Bagel Fat One", cursive;
+  color: rgba(220, 250, 149, 0.952);
+  font-size: 50px;
+  text-shadow: 0px 5px 0px #25502e;
+}
+header button {
+  width: 30%;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+header button:active {
+  top: 2px;
+}
+header #demend img {
+  max-width: 100%;
+  max-height: 100%;
+}
+header #request img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.demend-modal {
+  position: fixed;
+  display: none;
+  background: #fff;
+  z-index: 100;
+  top: 15%;
+  left: 250px;
+  border: 4px solid black;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+}
+.demend-modal.visible {
+  display: block;
+}
+.demend-modal .modal__content {
+  width: 100%;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+.demend-modal .modal__content .demend-main-img {
+  width: 350px;
+  right: 10px;
+}
+.demend-modal .modal__content .buy-btn {
+  top: 30px;
+  position: relative;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #00329e;
+  background: #a5b7c6;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 0.5rem;
+  width: 200px;
+  height: 100px;
+  font-size: 30px;
+}
+.demend-modal .modal__actions {
+  width: 450px;
+}
+.demend-modal .modal__actions .out-btn {
+  position: relative;
+  left: 300px;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #00329e;
+  background: #328cd6;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+.demend-modal .modal__content .forBorder {
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  align-content: center;
+}
+/* 현재자산 css */
+
+.sell-modal {
+  position: fixed;
+  display: none;
+  background: #fff;
+  z-index: 100;
+  top: 15%;
+  left: 250px;
+  border: 4px solid black;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+}
+.sell-modal.visible {
+  display: block;
+}
+.sell-modal .sell_modal__content {
+  width: 450px;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+.sell-modal .sell_modal__actions {
+  width: 450px;
+}
+
+.buy-fail-modal {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  width: 400px;
+  height: 200px;
+  top: 300px;
+  left: 250px;
+  border-radius: 10px;
+  display: none;
+}
+.buy-fail-modal.visible {
+  display: block;
+}
+.buy-fail-modal .modal__title {
+  margin: 0;
+  padding: 1rem;
+  border-bottom: 1px solid #00329e;
+  background: #00329e;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.buy-fail-modal .modal__content {
+  padding: 1rem;
+}
+.buy-fail-modal .modal__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #00329e;
+  background: #00329e;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+.btn:hover,
+.btn:active {
+  background: #b6b2af;
+  border-color: #39312c;
+}
+
+.ip {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.sell-modal .sell_modal__actions .out-btn {
+  position: relative;
+  left: 300px;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #00329e;
+  background: #328cd6;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+/* .demend-modal .modal__content .forBorder {
+  border: 2px solid blue;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  align-content: center;
+} */
+#line1,
+#line2 {
+  height: 33%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#line1 button,
+#line2 button {
+  height: 30%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+#line1 button:active {
+  top: 2px;
+}
+#line2 button:active {
+  top: 2px;
+}
+
+/* 동물들 이미지 사이즈 조절 */
+#line1 button img,
+#line2 button img {
+  max-width: 150%;
+  max-height: 150%;
+}
+
+.item-chicken,
+.item-cow,
+.item-sheep,
+.item-duck,
+.item-goat,
+.item-pig {
+  opacity: 0;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  animation: fadeInAndOut 2s ease-out forwards;
+  visibility: hidden; /* 텍스트 숨기기 */
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  50% {
+    opacity: 0;
+    top: 0;
+  }
+}
+
+.footer_main {
+  background: rgba(238, 130, 238, 0);
+  width: 100%;
+  height: 130px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+  
+/* 메뉴 css 부분 */
+/* 메뉴 버튼 css */
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css");
+
+/* 크기 400 x 600 기준 */
+
+.menu-modal {
+  position: fixed;
+  display: none;
+  background: #fff;
+  z-index: 100;
+  top: 15%;
+  left: 250px;
+  border: 4px solid black;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+}
+
+.menu-modal.show {
+  display: flex;
+  border: 4px solid black;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+}
+
+.menu-header {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.menu-header .title {
+  /* border: 2px solid red; */
+  flex: 3;
+}
+
+.menu-header span {
+  /* border: 2px solid red; */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.main_info {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  flex: 3;
+}
+
+.main_info span {
+  border: 2px solid blue;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#buy {
+  background: palegoldenrod;
+}
+
+.footer_main .sell, .miniGame {
+  border: none;
+  background: none;
+}
+
+.footer_main .sell, .miniGame:active {
+    top: 2px;
+}
+
+.game-container{
+  background: wheat;
+}
