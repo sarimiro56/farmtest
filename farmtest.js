@@ -232,11 +232,12 @@ $truffle.textContent = `트러플 : ${fleeceValue}`;
 
 $money.textContent = `현재자산 : ${totalMoney}원`;
 
-// 판매 버튼 이벤트
+// 판매 버튼 클릭 이벤트
 const sellButton = document.getElementById('sell');
 sellButton.addEventListener('click', () => {
-  console.log('판매버튼');
+  console.log('판매 버튼 클릭');
 });
+
 
 const $imgFn1 = document.querySelector('.imgFn1');
 const $imgFn2 = document.querySelector('.imgFn2');
@@ -296,4 +297,3 @@ $imgFn5.addEventListener('click', () => {
 
 
 });
-

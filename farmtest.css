@@ -2,11 +2,16 @@
 body {
   background: url("./image_main/main_background.jpg");
 }
+/* font 가져옴. */
+@font-face {
+  font-family: 'NeoDunggeunmoPro-Regular';
+  src: url('./image_main/font_main/NeoDunggeunmoPro-Regular.ttf') format('truetype');
+}
 /* box를 mainbox의 정가운데에 위치시켜볼 예정. 필요 없으면 제거. */
 .mainbox {
   background: url("./image_main/background_white.png");
-  width: 1200px;
-  height: 950px;
+  width: 910px;
+  height: 910px;
 }
 #box {
   width: 900px;
@@ -301,6 +306,7 @@ header #request img {
   }
 }
 
+/* footer 부분 */
 .footer_main {
   background: rgba(238, 130, 238, 0);
   width: 100%;
@@ -310,6 +316,30 @@ header #request img {
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.footer_main .custom-btn {
+  width: 30%;
+  height: 110%;
+  color: #a85f2f;
+  padding: 10px 25px;
+  font-family: 'NeoDunggeunmoPro-Regular';
+  font-size: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  bottom: 20px;
+}
+.footer_main .btn-15 {
+  background: url('./image_main/wood_patmal.png') no-repeat;
+  background-size: 100%;
+  border: none;
+  z-index: 1;
+}
+
+.footer_main .btn-15:active {
+  top: 1px;
 }
 
   
@@ -382,15 +412,3 @@ header #request img {
   background: palegoldenrod;
 }
 
-.footer_main .sell, .miniGame {
-  border: none;
-  background: none;
-}
-
-.footer_main .sell, .miniGame:active {
-    top: 2px;
-}
-
-.game-container{
-  background: wheat;
-}
